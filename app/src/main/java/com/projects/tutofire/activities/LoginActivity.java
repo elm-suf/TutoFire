@@ -88,8 +88,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onStart();
         FirebaseUser user = mAuth.getCurrentUser();
 
+        //user is already connected  so we need to redirect to HomeActivity
         if (user != null) {
-            //user is already connected  so we need to redirect to HomeActivity
             updateUI();
         }
     }
