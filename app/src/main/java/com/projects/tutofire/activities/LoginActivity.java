@@ -83,16 +83,16 @@ public class LoginActivity extends AppCompatActivity {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        FirebaseUser user = mAuth.getCurrentUser();
-//
-//        if (user != null) {
-//            //user is already connected  so we need to redirect to HomeActivity
-//            updateUI();
-//        }
-//    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser user = mAuth.getCurrentUser();
+
+        if (user != null) {
+            //user is already connected  so we need to redirect to HomeActivity
+            updateUI();
+        }
+    }
 
     private void updateUI() {
         startActivity(HomeActivity);
