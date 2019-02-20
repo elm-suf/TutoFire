@@ -1,20 +1,17 @@
 package com.projects.tutofire.activities;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.projects.tutofire.R;
@@ -26,6 +23,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button btn_login;
     private EditText edt_email_login;
     private EditText edt_password_login;
+    private ProgressBar progressBar;
     private FirebaseAuth mAuth;
     private Intent HomeActivity;
     private Intent RegistrationActivity;
@@ -42,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         edt_password_login = findViewById(R.id.edt_password_login);
         edt_email_login = findViewById(R.id.edt_email_login);
         btn_login = findViewById(R.id.btn_login);
+        progressBar = findViewById(R.id.login_progress);
 
         Toast.makeText(getApplicationContext(), "DocumentSnapshot added", Toast.LENGTH_SHORT).show();
 
@@ -53,22 +52,18 @@ public class LoginActivity extends AppCompatActivity {
         txv_register.setOnClickListener(v -> startActivity(RegistrationActivity));
     }
 
-    private void gotoRegistration() {
-        Intent intent = new Intent(this, RegisterActivity.class);
-        startActivity(intent);
-    }
-
     private void login() {
+        progressBar.setVisibility(View.VISIBLE);
         String email = edt_email_login.getText().toString();
         String pwd = edt_password_login.getText().toString();
         Pattern pattern = Patterns.EMAIL_ADDRESS;
 
         if (email.isEmpty() || pwd.isEmpty()) {
             showMessage("all fields must be filled");
-        } else if (pwd.length() < 5) {
-            showMessage("pwd mus be at least 6 char");
         } else if (!pattern.matcher(email).matches()) {
             showMessage("enter a valid email");
+        } else if (pwd.length() < 5) {
+            showMessage("pwd mus be at least 6 char");
         } else {
             mAuth.signInWithEmailAndPassword(email, pwd)
                     .addOnCompleteListener(this, task -> {
@@ -81,22 +76,23 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     });
         }
+        progressBar.setVisibility(View.INVISIBLE);
     }
 
     private void showMessage(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        FirebaseUser user = mAuth.getCurrentUser();
-
-        if (user != null) {
-            //user is already connected  so we need to redirect to HomeActivity
-            updateUI();
-        }
-    }
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        FirebaseUser user = mAuth.getCurrentUser();
+//
+//        if (user != null) {
+//            //user is already connected  so we need to redirect to HomeActivity
+//            updateUI();
+//        }
+//    }
 
     private void updateUI() {
         startActivity(HomeActivity);

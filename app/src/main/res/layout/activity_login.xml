@@ -6,6 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".activities.LoginActivity">
 
+    <android.support.v4.widget.ContentLoadingProgressBar
+        android:id="@+id/login_progress"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="0dp"
@@ -39,20 +53,20 @@
             android:id="@+id/edt_email_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email"
             android:layout_marginHorizontal="32dp"
             android:layout_marginBottom="32dp"
+            android:hint="Email"
             android:inputType="textEmailAddress" />
 
         <EditText
             android:id="@+id/edt_password_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginBottom="32dp"
             android:ems="10"
             android:hint="Password"
             android:inputType="textPassword"
-            android:layout_marginHorizontal="32dp"
-            android:layout_marginBottom="32dp"
             app:layout_constraintVertical_bias="1.0" />
 
         <Button
@@ -67,24 +81,9 @@
             android:id="@+id/txv_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Register Now!"
             android:layout_marginHorizontal="64dp"
+            android:text="Register Now!"
             android:textAlignment="center" />
     </LinearLayout>
-
-    <ProgressBar
-        android:id="@+id/progressBar_login"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="137dp"
-        android:layout_height="135dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

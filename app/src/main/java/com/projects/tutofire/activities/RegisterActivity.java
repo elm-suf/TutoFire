@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Patterns;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -61,6 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
         String username = edt_uname_register.getText().toString();
         Pattern pattern = Patterns.EMAIL_ADDRESS;
 
+        btn_register.setActivated(false);
         if (email.isEmpty() || pwd.isEmpty()) {
             showMessage("all fields must be filled");
         } else if (pwd.length() < 5) {
@@ -70,23 +72,24 @@ public class RegisterActivity extends AppCompatActivity {
         } else if (!pwd.equals(pwd_confirm)) {
             showMessage("Passwords must match");
         } else {
+            progressBar_register.setVisibility(View.VISIBLE);
             mAuth.createUserWithEmailAndPassword(email, pwd)
                     .addOnCompleteListener(this, task -> {
+                        progressBar_register.setVisibility(View.INVISIBLE);
                         if (task.isSuccessful()) {
                             showMessage("User Registered");
-                            updateUserInfo(username, mAuth.getCurrentUser());
+                            updateUserInfo(username, Objects.requireNonNull(mAuth.getCurrentUser()));
                             updateUI();
                         } else {
+                            btn_register.setActivated(true);
                             showMessage("sign in: failure");
                         }
-
                     });
         }
 
     }
 
     private void updateUserInfo(String username, FirebaseUser currentUser) {
-//todo         addUserToCollectionUsers();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         // Create a new user with a first and last name
@@ -95,7 +98,7 @@ public class RegisterActivity extends AppCompatActivity {
         user.put("email", Objects.requireNonNull(currentUser.getEmail()));
         user.put("username", username);
 
-// Add a new document with a generated ID
+        // Add a new document with a generated ID
         db.collection("users")
                 .document(currentUser.getUid())
                 .set(user)
@@ -112,6 +115,5 @@ public class RegisterActivity extends AppCompatActivity {
     private void showMessage(String msg) {
         Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_SHORT).show();
     }
-
 
 }
