@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Patterns;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -21,13 +22,14 @@ import com.projects.tutofire.R;
 import java.util.regex.Pattern;
 
 public class LoginActivity extends AppCompatActivity {
-    String TAG = "Main_Act";
-    Button btn_login;
-    EditText edt_email_login;
-    EditText edt_password_login;
-    TextView txv_register;
+    private String TAG = "Main_Act";
+    private Button btn_login;
+    private EditText edt_email_login;
+    private EditText edt_password_login;
     private FirebaseAuth mAuth;
     private Intent HomeActivity;
+    private Intent RegistrationActivity;
+    TextView txv_register;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,16 +38,19 @@ public class LoginActivity extends AppCompatActivity {
         FirebaseApp.initializeApp(this);
         mAuth = FirebaseAuth.getInstance();
 
+        txv_register = findViewById(R.id.txv_register);
         edt_password_login = findViewById(R.id.edt_password_login);
         edt_email_login = findViewById(R.id.edt_email_login);
         btn_login = findViewById(R.id.btn_login);
+
         Toast.makeText(getApplicationContext(), "DocumentSnapshot added", Toast.LENGTH_SHORT).show();
 
 
         HomeActivity = new Intent(this, HomeActivity.class);
+        RegistrationActivity = new Intent(this, RegisterActivity.class);
 
         btn_login.setOnClickListener(v -> login());
-        txv_register.setOnClickListener(v -> gotoRegistration());
+        txv_register.setOnClickListener(v -> startActivity(RegistrationActivity));
     }
 
     private void gotoRegistration() {
@@ -66,16 +71,13 @@ public class LoginActivity extends AppCompatActivity {
             showMessage("enter a valid email");
         } else {
             mAuth.signInWithEmailAndPassword(email, pwd)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                showMessage("Sign in: success");
-                                FirebaseUser user = mAuth.getCurrentUser();
-                                updateUI();
-                            } else {
-                                showMessage("sign in: failure");
-                            }
+                    .addOnCompleteListener(this, task -> {
+                        if (task.isSuccessful()) {
+                            showMessage("Sign in: success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            updateUI();
+                        } else {
+                            showMessage("sign in: failure");
                         }
                     });
         }
