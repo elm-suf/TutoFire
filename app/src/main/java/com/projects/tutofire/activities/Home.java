@@ -1,10 +1,10 @@
 package com.projects.tutofire.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.projects.tutofire.R;
+import com.projects.tutofire.fragments.CoursesFragment;
 
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -84,10 +85,13 @@ public class Home extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_courses) {
+            FragmentManager fm = getSupportFragmentManager();
+            CoursesFragment fragment = new CoursesFragment();
+            fm.beginTransaction().replace(R.id.container_home, fragment).commit();
         } else if (id == R.id.nav_teachers) {
-            //todo create new fragment with all teachers
-            Intent intent = new Intent(this, HomeActivity.class);
-            startActivity(intent);
+            FragmentManager fm = getSupportFragmentManager();
+            CoursesFragment fragment = new CoursesFragment();
+            fm.beginTransaction().replace(R.id.container_home, fragment).commit();
         } else if (id == R.id.nav_booked_lessons) {
             //todo create new fragment with booked lessons
         } else if (id == R.id.nav_share) {
