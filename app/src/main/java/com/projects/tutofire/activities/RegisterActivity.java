@@ -1,25 +1,23 @@
 package com.projects.tutofire.activities;
 
-import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Patterns;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.projects.tutofire.R;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
 import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -89,7 +87,20 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void updateUserInfo(String username, FirebaseUser currentUser) {
 //todo         addUserToCollectionUsers();
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+        // Create a new user with a first and last name
+        Map<String, Object> user = new HashMap<>();
+        user.put("id", currentUser.getUid());
+        user.put("email", Objects.requireNonNull(currentUser.getEmail()));
+        user.put("username", username);
+
+// Add a new document with a generated ID
+        db.collection("users")
+                .document(currentUser.getUid())
+                .set(user)
+                .addOnSuccessListener(v -> showMessage("DocumentSnapshot successfully write!"))
+                .addOnFailureListener(e -> showMessage(e.getMessage()));
     }
 
     private void updateUI() {
