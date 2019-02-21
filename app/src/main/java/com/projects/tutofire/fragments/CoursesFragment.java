@@ -45,7 +45,7 @@ public class CoursesFragment extends Fragment {
         vm.getData().observe(
                 this, courses -> {
                     Log.d(TAG, "onChanged() called with: courses = [" + courses + "]");
-                    customAdapter = new MyAdapter(getActivity(), courses);
+                    customAdapter = new MyAdapter(getContext(), courses);
                     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                     recyclerView.setAdapter(customAdapter);
                 }
