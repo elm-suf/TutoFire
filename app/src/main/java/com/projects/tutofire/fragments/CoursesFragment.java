@@ -4,6 +4,7 @@ package com.projects.tutofire.fragments;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -16,15 +17,18 @@ import android.view.ViewGroup;
 
 import com.projects.tutofire.R;
 import com.projects.tutofire.SharedViewModel;
+import com.projects.tutofire.activities.BookingActivity;
 import com.projects.tutofire.database.entity.Course;
 import com.projects.tutofire.fragments.adapters.MyAdapter;
 
 import java.util.List;
 
+import static com.projects.tutofire.fragments.adapters.MyAdapter.EXTRA_COURSE;
+
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CoursesFragment extends Fragment {
+public class CoursesFragment extends Fragment implements MyAdapter.OnCourseListener {
     String TAG = "mTAG";
     LiveData<List<Course>> data;
     Context context;
@@ -45,7 +49,7 @@ public class CoursesFragment extends Fragment {
         vm.getData().observe(
                 this, courses -> {
                     Log.d(TAG, "onChanged() called with: courses = [" + courses + "]");
-                    customAdapter = new MyAdapter(getContext(), courses);
+                    customAdapter = new MyAdapter(courses, this);
                     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                     recyclerView.setAdapter(customAdapter);
                 }
@@ -59,4 +63,17 @@ public class CoursesFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_courses, container, false);
     }
 
+    @Override
+    public void onItemClicked(Course course) {
+        Log.d(TAG, "onItemClicked() called with: course = [" + course + "]");
+        Intent intent = new Intent(getContext(), BookingActivity.class);
+        intent.putExtra(EXTRA_COURSE, course.getTitle());
+        Fragment fragment = new BookingFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("title", course.getTitle());
+        bundle.putString("id", course.getId());
+        bundle.putString("description", course.getDescription());
+        fragment.setArguments(bundle);
+        getFragmentManager().beginTransaction().replace(R.id.container_home, fragment).addToBackStack(null).commit();
+    }
 }

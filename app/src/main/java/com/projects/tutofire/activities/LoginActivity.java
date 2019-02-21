@@ -45,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), "DocumentSnapshot added", Toast.LENGTH_SHORT).show();
 
 
-        HomeActivity = new Intent(this, HomeActivity.class);
+        HomeActivity = new Intent(this, Home.class);
         RegistrationActivity = new Intent(this, RegisterActivity.class);
 
         btn_login.setOnClickListener(v -> login());
