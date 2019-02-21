@@ -6,16 +6,30 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_courses"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/translator"
             android:title="Courses" />
         <item
             android:id="@+id/nav_teachers"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/work"
             android:title="Teachers" />
         <item
             android:id="@+id/nav_booked_lessons"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/calendar"
             android:title="Booked lessons" />
+    </group>
+    <group>
+        <item android:title="User">
+            <menu>
+                <item
+                    android:id="@+id/account"
+                    android:icon="@drawable/account"
+                    android:title="Account" />
+                <item
+                    android:id="@+id/nav_logout"
+                    android:icon="@drawable/exit"
+                    android:title="Log Out" />
+            </menu>
+        </item>
     </group>
     <group>
         <item android:title="Communicate">
@@ -31,5 +45,4 @@
             </menu>
         </item>
     </group>
-
 </menu>

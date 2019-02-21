@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.projects.tutofire.R;
 
-import static com.projects.tutofire.fragments.adapters.MyAdapter.EXTRA_COURSE;
+import static com.projects.tutofire.fragments.adapters.CourseAdapter.EXTRA_COURSE;
 
 public class BookingActivity extends AppCompatActivity {
     private TextView txv_title_booking;

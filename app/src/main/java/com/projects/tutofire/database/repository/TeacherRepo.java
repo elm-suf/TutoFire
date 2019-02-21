@@ -8,17 +8,17 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.projects.tutofire.database.entity.Course;
+import com.projects.tutofire.database.entity.Teacher;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CourseRepo {
-    final String TAG = "CourseRepo";
+public class TeacherRepo {
+    final String TAG = "TeacherRepo";
     FirebaseFirestore db;
-    private MutableLiveData<List<Course>> data;
+    private MutableLiveData<List<Teacher>> data;
 
-    public CourseRepo() {
+    public TeacherRepo() {
         db = FirebaseFirestore.getInstance();
         data = new MutableLiveData<>();
         init();
@@ -26,16 +26,16 @@ public class CourseRepo {
 
     @SuppressLint("NewApi")
     private void init() {
-        db.collection("courses")
+        db.collection("teachers")
                 .get()
                 .addOnCompleteListener((Task<QuerySnapshot> task) -> {
                     if (task.isSuccessful()) {
-                        List<Course> list = new ArrayList<>();
+                        List<Teacher> list = new ArrayList<>();
                         List<DocumentSnapshot> documents = task.getResult().getDocuments();
 
 
                         documents.stream()
-                                .map(d -> new Course(d.getId(), (String) d.get("title"), (String) d.get("description")))
+                                .map(d -> new Teacher(d.getId(), (String) d.get("username"), (String) d.get("email")))
                                 .forEach(list::add);
                         data.setValue(list);
                         System.out.println(data);
@@ -52,7 +52,8 @@ public class CourseRepo {
                 });
     }
 
-    public MutableLiveData<List<Course>> getData() {
+    public MutableLiveData<List<Teacher>> getData() {
         return data;
     }
 }
+

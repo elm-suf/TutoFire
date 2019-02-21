@@ -3,7 +3,6 @@ package com.projects.tutofire.fragments;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -19,22 +18,21 @@ import com.projects.tutofire.R;
 import com.projects.tutofire.SharedViewModel;
 import com.projects.tutofire.activities.BookingActivity;
 import com.projects.tutofire.database.entity.Course;
-import com.projects.tutofire.fragments.adapters.MyAdapter;
+import com.projects.tutofire.fragments.adapters.CourseAdapter;
 
 import java.util.List;
 
-import static com.projects.tutofire.fragments.adapters.MyAdapter.EXTRA_COURSE;
+import static com.projects.tutofire.fragments.adapters.CourseAdapter.EXTRA_COURSE;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CoursesFragment extends Fragment implements MyAdapter.OnCourseListener {
+public class CoursesFragment extends Fragment implements CourseAdapter.OnCourseListener {
     String TAG = "mTAG";
     LiveData<List<Course>> data;
-    Context context;
     RecyclerView recyclerView;
     private SharedViewModel vm;
-    private MyAdapter customAdapter;
+    private CourseAdapter customAdapter;
 
     public CoursesFragment() {
         // Required empty public constructor
@@ -46,10 +44,10 @@ public class CoursesFragment extends Fragment implements MyAdapter.OnCourseListe
         recyclerView = getView().findViewById(R.id.recycler_courses);
         vm = ViewModelProviders.of(this).get(SharedViewModel.class);
         vm.init();
-        vm.getData().observe(
+        vm.getDataCourses().observe(
                 this, courses -> {
                     Log.d(TAG, "onChanged() called with: courses = [" + courses + "]");
-                    customAdapter = new MyAdapter(courses, this);
+                    customAdapter = new CourseAdapter(courses, this);
                     recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
                     recyclerView.setAdapter(customAdapter);
                 }

@@ -13,7 +13,7 @@ import com.projects.tutofire.database.entity.Course;
 
 import java.util.List;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
+public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder> {
     public static String EXTRA_COURSE = "EXTRA_COURSE";
     String TAG = "mTAG";
 
@@ -22,7 +22,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private OnCourseListener onCourseListener;
 
 
-    public MyAdapter(List<Course> listOfCourses, OnCourseListener onCourseListener) {
+    public CourseAdapter(List<Course> listOfCourses, OnCourseListener onCourseListener) {
         this.listOfCourses = listOfCourses;
         this.onCourseListener = onCourseListener;
     }

@@ -1,5 +1,6 @@
 package com.projects.tutofire.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -14,18 +15,23 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.projects.tutofire.R;
+import com.projects.tutofire.fragments.BookingFragment;
 import com.projects.tutofire.fragments.CoursesFragment;
 
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home2);
+        setContentView(R.layout.activity_home);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        mAuth = FirebaseAuth.getInstance();
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -90,7 +96,7 @@ public class Home extends AppCompatActivity
             fm.beginTransaction().replace(R.id.container_home, fragment).commit();
         } else if (id == R.id.nav_teachers) {
             FragmentManager fm = getSupportFragmentManager();
-            CoursesFragment fragment = new CoursesFragment();
+            BookingFragment fragment = new BookingFragment();
             fm.beginTransaction().replace(R.id.container_home, fragment).commit();
         } else if (id == R.id.nav_booked_lessons) {
             //todo create new fragment with booked lessons
@@ -98,6 +104,12 @@ public class Home extends AppCompatActivity
             //todo create new intent send message to somebody
         } else if (id == R.id.nav_send) {
             //todo new intent email
+        } else if (id == R.id.account) {
+            //todo replace fragment with AccountFragment
+        } else if (id == R.id.nav_logout) {
+            mAuth.signOut();
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
