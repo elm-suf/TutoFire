@@ -17,8 +17,8 @@ import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.projects.tutofire.R;
-import com.projects.tutofire.fragments.BookingFragment;
 import com.projects.tutofire.fragments.CoursesFragment;
+import com.projects.tutofire.fragments.TeachersFragment;
 
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -96,7 +96,7 @@ public class Home extends AppCompatActivity
             fm.beginTransaction().replace(R.id.container_home, fragment).commit();
         } else if (id == R.id.nav_teachers) {
             FragmentManager fm = getSupportFragmentManager();
-            BookingFragment fragment = new BookingFragment();
+            TeachersFragment fragment = new TeachersFragment();
             fm.beginTransaction().replace(R.id.container_home, fragment).commit();
         } else if (id == R.id.nav_booked_lessons) {
             //todo create new fragment with booked lessons

@@ -20,6 +20,7 @@ import com.projects.tutofire.activities.BookingActivity;
 import com.projects.tutofire.database.entity.Course;
 import com.projects.tutofire.fragments.adapters.CourseAdapter;
 
+import java.io.Serializable;
 import java.util.List;
 
 import static com.projects.tutofire.fragments.adapters.CourseAdapter.EXTRA_COURSE;
@@ -43,7 +44,6 @@ public class CoursesFragment extends Fragment implements CourseAdapter.OnCourseL
         super.onActivityCreated(savedInstanceState);
         recyclerView = getView().findViewById(R.id.recycler_courses);
         vm = ViewModelProviders.of(this).get(SharedViewModel.class);
-        vm.init();
         vm.getDataCourses().observe(
                 this, courses -> {
                     Log.d(TAG, "onChanged() called with: courses = [" + courses + "]");
@@ -66,12 +66,14 @@ public class CoursesFragment extends Fragment implements CourseAdapter.OnCourseL
         Log.d(TAG, "onItemClicked() called with: course = [" + course + "]");
         Intent intent = new Intent(getContext(), BookingActivity.class);
         intent.putExtra(EXTRA_COURSE, course.getTitle());
-        Fragment fragment = new BookingFragment();
+        Fragment fragment = new TeachersFragment();
         Bundle bundle = new Bundle();
         bundle.putString("title", course.getTitle());
         bundle.putString("id", course.getId());
         bundle.putString("description", course.getDescription());
+        bundle.putSerializable("teachers", (Serializable) course.getTeachers());
         fragment.setArguments(bundle);
+        assert getFragmentManager() != null;
         getFragmentManager().beginTransaction().replace(R.id.container_home, fragment).addToBackStack(null).commit();
     }
 }

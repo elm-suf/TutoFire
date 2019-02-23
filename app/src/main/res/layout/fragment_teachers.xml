@@ -7,28 +7,27 @@
     android:layout_height="match_parent"
     android:background="@color/colorLight"
     android:paddingHorizontal="8dp"
-    tools:context=".fragments.BookingFragment">
+    tools:context=".fragments.TeachersFragment">
 
     <TextView
         android:id="@+id/txv_booking"
-        android:text="Choose Teacher"
-        android:textAlignment="center"
-        android:textColor="@color/colorAccent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
+        android:text="Choose Teacher"
+        android:textAlignment="center"
         android:textAllCaps="false"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/colorAccent"
         android:textSize="46sp"
         android:textStyle="bold"
         android:typeface="serif"
-        app:layout_constraintHorizontal_bias="0.0" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:hint="Search by name..."
         android:id="@+id/edt_booking"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -37,6 +36,7 @@
         android:layout_marginEnd="8dp"
         android:drawableRight="@drawable/search"
         android:ems="10"
+        android:hint="Search by name..."
         android:inputType="textPersonName"
         android:textColor="@color/colorLight"
         app:layout_constraintEnd_toEndOf="parent"
@@ -52,5 +52,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_booking" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_booking"
+        tools:listitem="@layout/teacher_list_item" />
 </android.support.constraint.ConstraintLayout>

@@ -15,10 +15,12 @@ import java.util.List;
 
 public class TeacherAdapter extends RecyclerView.Adapter<TeacherAdapter.ViewHolder> {
 
-    private List<Teacher> teachers;
+    OnTeacherListener onTeacherListener;
+    private List<Teacher> listOfTeachers;
 
-    public TeacherAdapter(List<Teacher> teachers) {
-        this.teachers = teachers;
+    public TeacherAdapter(List<Teacher> teachers, OnTeacherListener onTeacherListener) {
+        this.listOfTeachers = teachers;
+        this.onTeacherListener = onTeacherListener;
     }
 
     @NonNull
@@ -27,34 +29,40 @@ public class TeacherAdapter extends RecyclerView.Adapter<TeacherAdapter.ViewHold
         View view = LayoutInflater
                 .from(viewGroup.getContext())
                 .inflate(R.layout.teacher_list_item, viewGroup, false);
-        return new ViewHolder(view);//todo add oncick interface
+        return new ViewHolder(view, onTeacherListener);//todo add oncick interface
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
-        Teacher teacher = teachers.get(i);
+        Teacher teacher = listOfTeachers.get(i);
         viewHolder.txv_name_teacher.setText(teacher.getUsername());
-        viewHolder.txv_rating.setText("22");
     }
 
     @Override
     public int getItemCount() {
-        return teachers.size();
+        return listOfTeachers.size();
+    }
+
+    public interface OnTeacherListener {
+        void onItemClicked(Teacher teacher);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView txv_name_teacher;
-        TextView txv_rating;
+        OnTeacherListener onTeacherListener;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull View itemView, OnTeacherListener onTeacherListener) {
             super(itemView);
             txv_name_teacher = itemView.findViewById(R.id.txv_name_teacher);
-            txv_rating = itemView.findViewById(R.id.txv_rating);
+            this.onTeacherListener = onTeacherListener;
+
+            itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
             Log.d("mTAG", "onClick:-------------------- ");
+            onTeacherListener.onItemClicked(listOfTeachers.get(getAdapterPosition()));
         }
     }
 }
