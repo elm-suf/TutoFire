@@ -89,5 +89,10 @@ public class TeachersFragment extends Fragment implements TeacherAdapter.OnTeach
     @Override
     public void onItemClicked(Teacher teacher) {
         Toast.makeText(getContext(), "item click " + teacher, Toast.LENGTH_SHORT).show();
+
+        Fragment fragment = new BookingFragment();
+
+        getFragmentManager().beginTransaction().replace(R.id.container_home, fragment).addToBackStack(null).commit();
+
     }
 }
