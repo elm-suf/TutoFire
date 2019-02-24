@@ -33,6 +33,7 @@ import static android.widget.Toast.LENGTH_SHORT;
  */
 public class TeachersFragment extends Fragment implements TeacherAdapter.OnTeacherListener {
     String TAG = "mTAG_BookingFragment";
+    String chosenCourseTitle;
 
     RecyclerView rec_booking;
     EditText edt_booking;
@@ -68,6 +69,7 @@ public class TeachersFragment extends Fragment implements TeacherAdapter.OnTeach
         } else {
             txv_booking.setText((CharSequence) getArguments().get("id"));
             HashMap<String, String> map = (HashMap) getArguments().get("teachers");
+            chosenCourseTitle = getArguments().getString("title");
             List<Teacher> teachers = new ArrayList<>();
             if (map == null) {
                 Toast.makeText(getContext(), "No teachers for this course", LENGTH_SHORT).show();
@@ -92,6 +94,13 @@ public class TeachersFragment extends Fragment implements TeacherAdapter.OnTeach
 
         Fragment fragment = new BookingFragment();
 
+
+        Bundle bundle = new Bundle();
+        bundle.putString("teacher", teacher.getUsername());
+        bundle.putString("title", chosenCourseTitle);
+        bundle.putString("id", teacher.getId().replaceAll("\\s+", ""));
+
+        fragment.setArguments(bundle);
         getFragmentManager().beginTransaction().replace(R.id.container_home, fragment).addToBackStack(null).commit();
 
     }
