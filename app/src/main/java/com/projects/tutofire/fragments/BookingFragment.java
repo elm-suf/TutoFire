@@ -129,7 +129,7 @@ public class BookingFragment extends Fragment {
     private void addReservationToStudentCollection(String date, String time_slot) {
         Map<String, Object> data = new HashMap<>();
         data.put("teacherId", teacherId);
-        data.put("teacher", teacherId);
+        data.put("teacher", teacherUsername);
         data.put("course", courseTitle);
         data.put("date", date);
         data.put("time_slot", time_slot);
