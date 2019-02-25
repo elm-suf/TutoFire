@@ -132,6 +132,7 @@ public class BookingFragment extends Fragment {
         data.put("teacher", teacherUsername);
         data.put("course", courseTitle);
         data.put("date", date);
+        data.put("status", "active");
         data.put("time_slot", time_slot);
 
 

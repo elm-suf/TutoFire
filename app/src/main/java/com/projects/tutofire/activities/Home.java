@@ -2,9 +2,7 @@ package com.projects.tutofire.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -13,11 +11,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.projects.tutofire.R;
 import com.projects.tutofire.fragments.CoursesFragment;
+import com.projects.tutofire.fragments.ReservationsFragment;
 import com.projects.tutofire.fragments.TeachersFragment;
 
 public class Home extends AppCompatActivity
@@ -33,14 +31,6 @@ public class Home extends AppCompatActivity
         setSupportActionBar(toolbar);
         mAuth = FirebaseAuth.getInstance();
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -99,7 +89,9 @@ public class Home extends AppCompatActivity
             TeachersFragment fragment = new TeachersFragment();
             fm.beginTransaction().replace(R.id.container_home, fragment).commit();
         } else if (id == R.id.nav_booked_lessons) {
-            //todo create new fragment with booked lessons
+            FragmentManager fm = getSupportFragmentManager();
+            ReservationsFragment fragment = new ReservationsFragment();
+            fm.beginTransaction().replace(R.id.container_home, fragment).commit();
         } else if (id == R.id.nav_share) {
             //todo create new intent send message to somebody
         } else if (id == R.id.nav_send) {

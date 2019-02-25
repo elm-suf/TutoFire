@@ -28,7 +28,6 @@ public class CoursesFragment extends Fragment implements CourseAdapter.OnCourseL
     String TAG = "mTAG";
     LiveData<List<Course>> data;
     RecyclerView recyclerView;
-    private SharedViewModel vm;
     private CourseAdapter customAdapter;
 
     public CoursesFragment() {
@@ -39,7 +38,7 @@ public class CoursesFragment extends Fragment implements CourseAdapter.OnCourseL
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         recyclerView = getView().findViewById(R.id.recycler_courses);
-        vm = ViewModelProviders.of(this).get(SharedViewModel.class);
+        SharedViewModel vm = ViewModelProviders.of(this).get(SharedViewModel.class);
         vm.getDataCourses().observe(
                 this, courses -> {
                     Log.d(TAG, "onChanged() called with: courses = [" + courses + "]");
