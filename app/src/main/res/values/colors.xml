@@ -7,4 +7,6 @@
     <color name="colorAccent">#d2b81e</color>
     <color name="colorPrimaryDark">#78909C</color>
     <color name="colorText">#424242</color>
+    <color name="success">#49a37a</color>
+    <color name="failure">#af4646</color>
 </resources>

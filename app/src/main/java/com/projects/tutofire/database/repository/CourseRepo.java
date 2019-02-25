@@ -12,6 +12,7 @@ import com.projects.tutofire.database.entity.Course;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class CourseRepo {
     final String TAG = "CourseRepo";
@@ -35,10 +36,10 @@ public class CourseRepo {
 
 
                         documents.stream()
-                                .map(d -> new Course(d.getId(), (String) d.get("title"), (String) d.get("description")))
+                                .map(d -> new Course(d.getId(), (String) d.get("title"), (String) d.get("description"), (Map) d.get("teachers")))
                                 .forEach(list::add);
                         data.setValue(list);
-                        System.out.println(data);
+//                        System.out.println(data);
 //                        documents.forEach(d -> list.add(new Course(d.getId(), (String) d.get("title"), (String) d.get("description"))));
 
 //                        for (QueryDocumentSnapshot document : task.getResult()) {

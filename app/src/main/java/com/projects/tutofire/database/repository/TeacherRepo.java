@@ -12,6 +12,7 @@ import com.projects.tutofire.database.entity.Teacher;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class TeacherRepo {
     final String TAG = "TeacherRepo";
@@ -35,8 +36,9 @@ public class TeacherRepo {
 
 
                         documents.stream()
-                                .map(d -> new Teacher(d.getId(), (String) d.get("username"), (String) d.get("email")))
+                                .map(d -> new Teacher(d.getId(), (String) d.get("username"), (String) d.get("email"), (Map) d.get("teachings")))
                                 .forEach(list::add);
+                        list.forEach(i -> System.out.print(i.getTeachings().values()));
                         data.setValue(list);
                         System.out.println(data);
 //                        documents.forEach(d -> list.add(new Course(d.getId(), (String) d.get("title"), (String) d.get("description"))));

@@ -11,19 +11,14 @@ import com.projects.tutofire.database.repository.TeacherRepo;
 import java.util.List;
 
 public class SharedViewModel extends ViewModel {
-    CourseRepo repo;
     private MutableLiveData<List<Course>> dataCourses;
     private MutableLiveData<List<Teacher>> dataTeachers;
 
-    public void init() {
-        repo = new CourseRepo();
-        if (dataCourses == null)
-            dataCourses = repo.getData();
-    }
-
     public MutableLiveData<List<Course>> getDataCourses() {
-        if (dataCourses == null)
-            init();
+        if (dataCourses == null) {
+            CourseRepo repo = new CourseRepo();
+            dataCourses = repo.getData();
+        }
         return dataCourses;
     }
 
