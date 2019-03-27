@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!--android:background="@color/colorLightContrast"-->
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="32dp"
+            app:layout_constraintBottom_toTopOf="@+id/textView3"
+            app:layout_constraintEnd_toStartOf="@+id/date_reserv_txv"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.133"
+            app:srcCompat="@drawable/calendar" />
+
+        <TextView
+            android:id="@+id/date_reserv_txv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Mar 26 Feb 2019"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            app:layout_constraintBottom_toTopOf="@+id/teacher_reservation"
+            app:layout_constraintEnd_toStartOf="@+id/time_reserv_txv"
+            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/teacher_reservation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:text="Professor Professorson"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:layout_constraintBottom_toTopOf="@+id/course_reserv_txv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintTop_toBottomOf="@+id/date_reserv_txv" />
+
+        <TextView
+            android:id="@+id/course_reserv_txv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:text="Scienza"
+            android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"
+            app:layout_constraintBottom_toTopOf="@+id/spinner"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintTop_toBottomOf="@+id/teacher_reservation" />
+
+        <TextView
+            android:id="@+id/time_reserv_txv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:text="16:00"
+            android:textAlignment="textEnd"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            app:layout_constraintBottom_toTopOf="@+id/teacher_reservation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/date_reserv_txv"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView3"
+            app:layout_constraintTop_toBottomOf="@+id/course_reserv_txv">
+
+        </Spinner>
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="Status"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/spinner"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/course_reserv_txv" />
+    </android.support.constraint.ConstraintLayout>
+
+
+</android.support.v7.widget.CardView><!--<?xml version="1.0" encoding="utf-8"?>--><!--<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"--><!--xmlns:app="http://schemas.android.com/apk/res-auto"--><!--android:layout_width="match_parent"--><!--android:layout_height="wrap_content"--><!--android:layout_margin="8dp">-->
+
+    <!--<android.support.constraint.ConstraintLayout--><!--android:layout_width="match_parent"--><!--android:layout_height="wrap_content">-->
+
+    <!--&lt;!&ndash;android:background="@color/colorLightContrast"&ndash;&gt;-->
+
+    <!--<ImageView--><!--android:id="@+id/imageView2"--><!--android:layout_width="64dp"--><!--android:layout_height="64dp"--><!--android:layout_marginStart="16dp"--><!--android:layout_marginTop="16dp"--><!--android:layout_marginBottom="16dp"--><!--app:layout_constraintBottom_toBottomOf="parent"--><!--app:layout_constraintEnd_toStartOf="@+id/date_reserv_txv"--><!--app:layout_constraintStart_toStartOf="parent"--><!--app:layout_constraintTop_toTopOf="parent"--><!--app:srcCompat="@drawable/calendar" />-->
+
+    <!--<TextView--><!--android:id="@+id/date_reserv_txv"--><!--android:layout_width="0dp"--><!--android:layout_height="wrap_content"--><!--android:layout_marginStart="16dp"--><!--android:layout_marginTop="16dp"--><!--android:layout_marginEnd="32dp"--><!--android:layout_marginBottom="8dp"--><!--android:text="Corso"--><!--android:textAppearance="@style/TextAppearance.AppCompat.Headline"--><!--app:layout_constraintBottom_toTopOf="@+id/teacher_reservation"--><!--app:layout_constraintEnd_toEndOf="parent"--><!--app:layout_constraintStart_toEndOf="@+id/imageView2"--><!--app:layout_constraintTop_toTopOf="parent" />-->
+
+    <!--<TextView--><!--android:id="@+id/teacher_reservation"--><!--android:layout_width="0dp"--><!--android:layout_height="wrap_content"--><!--android:layout_marginStart="16dp"--><!--android:layout_marginTop="8dp"--><!--android:layout_marginEnd="32dp"--><!--android:text="Professor Professorson"--><!--android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Title"--><!--app:layout_constraintBottom_toTopOf="@+id/date_reservation"--><!--app:layout_constraintEnd_toEndOf="parent"--><!--app:layout_constraintStart_toEndOf="@+id/imageView2"--><!--app:layout_constraintTop_toBottomOf="@+id/date_reserv_txv" />-->
+
+    <!--<TextView--><!--android:id="@+id/date_reservation"--><!--android:layout_width="0dp"--><!--android:layout_height="wrap_content"--><!--android:layout_marginStart="16dp"--><!--android:layout_marginTop="8dp"--><!--android:layout_marginEnd="32dp"--><!--android:layout_marginBottom="16dp"--><!--android:text="2019-02-21"--><!--android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"--><!--app:layout_constraintBottom_toBottomOf="parent"--><!--app:layout_constraintEnd_toStartOf="@+id/time_reserv_txv"--><!--app:layout_constraintStart_toEndOf="@+id/imageView2"--><!--app:layout_constraintTop_toBottomOf="@+id/teacher_reservation" />-->
+
+    <!--<TextView--><!--android:id="@+id/time_reserv_txv"--><!--android:layout_width="48dp"--><!--android:layout_height="wrap_content"--><!--android:layout_marginStart="32dp"--><!--android:layout_marginTop="8dp"--><!--android:layout_marginEnd="32dp"--><!--android:layout_marginBottom="16dp"--><!--android:text="16:00"--><!--android:textAppearance="@style/TextAppearance.AppCompat.Light.SearchResult.Subtitle"--><!--app:layout_constraintBottom_toBottomOf="parent"--><!--app:layout_constraintEnd_toEndOf="parent"--><!--app:layout_constraintStart_toEndOf="@+id/date_reservation"--><!--app:layout_constraintTop_toBottomOf="@+id/teacher_reservation" />--><!--</android.support.constraint.ConstraintLayout>-->
+
+
+    <!--</android.support.v7.widget.CardView>-->

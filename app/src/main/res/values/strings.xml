@@ -10,4 +10,10 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+
+    <string-array name="status">
+        <item>Active</item>
+        <item>Cancelled</item>
+        <item>Done</item>
+    </string-array>
 </resources>
